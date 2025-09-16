@@ -66,7 +66,7 @@ describe('Macys Node.js Scraper Tests', () => {
       .post('/v1/queries')
       .matchHeader('content-type', 'application/json')
       .reply(200, function(uri, requestBody) {
-        const parsedBody = JSON.parse(requestBody);
+        const parsedBody = typeof requestBody === 'string' ? JSON.parse(requestBody) : requestBody;
         expect(parsedBody.source).toBe('universal');
         expect(parsedBody.url).toContain('macys.com');
         return mockResponse;

@@ -54,17 +54,7 @@ public class MainTest {
 
         String username = "test_user";
         String password = "test_pass";
-
-        Authenticator authenticator = (route, response) -> {
-            String credential = Credentials.basic(username, password);
-            return response.request().newBuilder()
-                    .header("Authorization", credential)
-                    .build();
-        };
-
-        OkHttpClient testClient = new OkHttpClient.Builder()
-                .authenticator(authenticator)
-                .build();
+        String credential = Credentials.basic(username, password);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("source", "universal");
@@ -74,10 +64,11 @@ public class MainTest {
         RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
         Request request = new Request.Builder()
                 .url(mockWebServer.url("/v1/queries"))
+                .header("Authorization", credential)
                 .post(body)
                 .build();
 
-        try (Response response = testClient.newCall(request).execute()) {
+        try (Response response = client.newCall(request).execute()) {
             assertEquals(200, response.code());
             
             RecordedRequest recordedRequest = mockWebServer.takeRequest();

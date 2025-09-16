@@ -13,7 +13,6 @@
   },
   "type": "module",
   "jest": {
-    "extensionsToTreatAsEsm": [".js"],
     "testEnvironment": "node",
     "transform": {}
   }

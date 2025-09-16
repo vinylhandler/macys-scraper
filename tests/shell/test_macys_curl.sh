@@ -1,7 +1,6 @@
 #!/usr/bin/env bats
 
 setup() {
-    load '../shared/mock_responses.json'
     export MOCK_RESPONSE_FILE="../shared/mock_responses.json"
 }
 
