@@ -18,8 +18,10 @@ namespace MacysScraperTests
     {
         private string LoadMockResponse()
         {
-            var mockFile = Path.Combine("..", "shared", "mock_responses.json");
-            return File.ReadAllText(mockFile);
+            var testDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var mockFile = Path.Combine(testDir!, "..", "..", "..", "..", "shared", "mock_responses.json");
+            var fullPath = Path.GetFullPath(mockFile);
+            return File.ReadAllText(fullPath);
         }
 
         [Fact]

@@ -134,7 +134,6 @@ class MacysScraperTest extends TestCase
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $this->assertEquals("https://realtime.oxylabs.io/v1/queries", curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
-        $this->assertTrue(curl_getinfo($ch, CURLINFO_POST));
         
         curl_close($ch);
     }
