@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta charset=\"utf-8\">\n  <title>Macy's - Shop Fashion Clothing &amp; Accessories - Official Site - Macys.com</title>\n</head>\n<body>\n  <div id=\"main-content\">\n    <h1>Sale Items</h1>\n    <div class=\"product-grid\">\n      <div class=\"product-item\">Sample Product</div>\n    </div>\n  </div>\n</body>\n</html>",
+      "created_at": "2023-12-18 10:35:28",
+      "updated_at": "2023-12-18 10:35:31",
+      "page": 1,
+      "url": "https://www.macys.com/shop/sale?id=3536&trackingid=407x733169&m_sc=sem&m_sb=google&m_tp=trademark&m_ac=google_trademark_international&m_ag=macy%27score_exact&m_cn=ggl_trademark_intl_lithuania_exact&m_pi=go_cmp-94807774_adg-154238318312_ad-674544461209_kwd-252677959_dev-c_ext-102882313401_prd-&gad_source=1&gclid=cj0kcqiayewrbhddarisagp1mwsg3z6ogoqrztdycjyqio5togc316ldkwuqkkbhrmiv4i_ho0gcjlkaagl6ealw_wcb",
+      "job_id": "7142462363617271809",
+      "status_code": 200
+    }
+  ]
+}
