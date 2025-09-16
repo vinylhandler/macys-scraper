@@ -1,0 +1,156 @@
+name: Test All Language Implementations
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10', '3.11']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        cd tests/python
+        python -m pip install --upgrade pip
+        pip install -r requirements-test.txt
+    
+    - name: Run Python tests
+      run: |
+        cd tests/python
+        pytest -v
+
+  test-go:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.19, '1.20', '1.21']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go ${{ matrix.go-version }}
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ matrix.go-version }}
+    
+    - name: Run Go tests
+      run: |
+        cd tests/go
+        go test -v
+
+  test-java:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [11, 17, 21]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v3
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'temurin'
+    
+    - name: Run Java tests
+      run: |
+        cd tests/java
+        mvn test
+
+  test-csharp:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['6.0.x', '7.0.x', '8.0.x']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    
+    - name: Run C# tests
+      run: |
+        cd tests/csharp
+        dotnet test
+
+  test-nodejs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install dependencies
+      run: |
+        cd tests/nodejs
+        npm install
+    
+    - name: Run Node.js tests
+      run: |
+        cd tests/nodejs
+        npm test
+
+  test-php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['8.0', '8.1', '8.2']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP ${{ matrix.php-version }}
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-version }}
+        extensions: curl, json
+    
+    - name: Install dependencies
+      run: |
+        cd tests/php
+        composer install
+    
+    - name: Run PHP tests
+      run: |
+        cd tests/php
+        vendor/bin/phpunit MacysScraperTest.php
+
+  test-shell:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install bats
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y bats jq
+    
+    - name: Run Shell tests
+      run: |
+        cd tests/shell
+        bats test_macys_curl.sh

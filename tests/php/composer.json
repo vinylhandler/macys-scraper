@@ -1,0 +1,17 @@
+{
+    "name": "oxylabs/macys-scraper-tests",
+    "description": "Tests for Macys Scraper PHP implementation",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^10.4",
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

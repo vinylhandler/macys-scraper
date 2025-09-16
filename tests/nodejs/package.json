@@ -1,0 +1,20 @@
+{
+  "name": "macys-scraper-tests",
+  "version": "1.0.0",
+  "description": "Tests for Macys Scraper Node.js implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nock": "^13.3.8",
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module",
+  "jest": {
+    "extensionsToTreatAsEsm": [".js"],
+    "testEnvironment": "node",
+    "transform": {}
+  }
+}
